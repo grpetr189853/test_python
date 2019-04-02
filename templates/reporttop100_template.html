@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+		<style type="text/css">
+		   TABLE {
+		    width: 300px; /* Ширина таблицы */
+		    border: 1px solid black; /* Рамка вокруг таблицы */
+		    border-collapse: collapse; 
+		   }
+		   TD, TH {
+		    padding: 3px; /* Поля вокруг содержимого ячеек */
+		    border: 1px solid black;
+		    text-align: center;
+		   }
+		   TH {
+		    text-align: left; /* Выравнивание по левому краю */
+		    background: black; /* Цвет фона */
+		    color: white; /* Цвет текста */
+		   }
+	</style>
+</head>
+<body>
+	<h2>Отчет по самым покупаемым товарам (Топ 100)</h2>
+	<h2>Количество запросов {{ total_queries }}:</h2>
+	<table>
+	<tr>
+		<th>
+			Имя товара
+		</th>
+		<th>
+			Номер заказа
+		</th>
+		<th>
+			Цена
+		</th>
+		<th>
+			Дата покупки
+		</th>
+	</tr>
+	{% for item in items %}
+		<tr>
+			<td>{{ item.product_name }}</td>
+			<td>{{ item.order_id.number }}</td>
+			<td>{{ item.product_price }}</td>
+			<td>{{ item.order_id.created_date|date:"d-m-Y" }}</td>			
+		</tr>
+	{% endfor %}
+	</table>
+</body>
+</html>
